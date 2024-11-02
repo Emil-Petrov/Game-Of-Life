@@ -1,0 +1,16 @@
+.component {
+  display: flex;
+  aspect-ratio: 1;
+  width: 1rem;
+  border: 1px solid;
+}
+
+.component.isAlive {
+  background-color: black;
+  border-color: white;
+}
+
+.component.isDead {
+  background-color: white;
+  border-color: black;
+}
