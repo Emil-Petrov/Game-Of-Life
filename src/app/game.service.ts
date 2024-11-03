@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class GameService {
   cells: GameOfLife.Board['cells'] = [];
-  columns: number = 25;
-  rows: number = 25;
+  columns: number = 100;
+  rows: number = 50;
 
   constructor() {
     this.generateRandomCells()
@@ -15,7 +15,7 @@ export class GameService {
   public generateRandomCells() {
     this.cells = [...new Array(this.rows).keys()].reduce<GameOfLife.Board["cells"]>((items) => {
       return [...items, [...new Array(this.columns).keys()].map(() => ({
-        state: !!Math.round(Math.random()) ? "alive" : "dead",
+        state: Math.random() <= .25 ? "alive" : "dead",
       }))];
     }, [] as GameOfLife.Board["cells"])
   }
@@ -47,14 +47,21 @@ export class GameService {
   }
 
   nextGeneration() {
-    this.cells = this.cells.map((row, rowIndex) => {
-      return row.map((_, cellIndex) => {
+    const newArray = this.cells.map((row, rowIndex) => {
+      return row.map((cell, cellIndex) => {
         const aliveNeighbours = this.getAliveNeighboursCount(rowIndex, cellIndex)
 
-        const state = (aliveNeighbours === 2 || aliveNeighbours === 3) ? 'alive' : 'dead';
+        const shouldStayAlive = cell.state === "alive" && aliveNeighbours === 2 || aliveNeighbours === 3;
+        const shouldBecomeAlive = aliveNeighbours === 3;
 
+        const state = shouldStayAlive || shouldBecomeAlive ? 'alive' : 'dead';
+        
         return { state };
       });
-    });
+    }) as GameOfLife.Board["cells"];
+
+    newArray.forEach((row, rowIndex) => row.forEach((col, colIndex) => {
+      this.cells[rowIndex][colIndex].state = col.state;
+    }))
   }
 }
