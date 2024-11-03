@@ -11,7 +11,4 @@ import { CommonModule } from '@angular/common';
 })
 export class BoardComponent {
   @Input() cells: GameOfLife.Board["cells"] = [];
-
-  @Input() columns: number = 0;
-  @Input() rows: number = 0;
 }

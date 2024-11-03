@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-cell',
@@ -10,6 +10,4 @@ import { Component, Input } from '@angular/core';
 })
 export class CellComponent {
   @Input() state: GameOfLife.Cell['state'] = 'dead';
-  
-  @Input() neighbours: GameOfLife.Cell['neightbours'] = 0;
 }
