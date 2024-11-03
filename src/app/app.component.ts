@@ -41,7 +41,7 @@ export class AppComponent {
     if (this.isAutoGenerating) {
       this.intervalId = window.setInterval(() => {
         this.gameService.nextGeneration();
-      }, 250)
+      }, 75);
     } else {
       window.clearInterval(this.intervalId);
     }

@@ -1,9 +1,11 @@
-<div class="component" [ngStyle]="{
+<div
+  class="component"
+  [ngStyle]="{
     'grid-template-columns': 'repeat(' + cells[0].length + ', 1fr)',
     'grid-template-rows': 'repeat(' + cells.length + ', 1fr)',
-}">
-    @for (row of cells; track $index) {
-        <app-cell *ngFor="let cell of row" [state]="cell.state"></app-cell>
-    }
-    
+  }"
+>
+  @for (row of cells; track $index) {
+    <app-cell *ngFor="let cell of row" [state]="cell.state"></app-cell>
+  }
 </div>

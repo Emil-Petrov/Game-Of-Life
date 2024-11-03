@@ -1,17 +1,15 @@
 .component {
-  display: flex;
   aspect-ratio: 1;
-  min-width: 1rem;
+  display: flex;
+  transition-property: background-color;
+  transition: 125ms ease-out;
   width: 100%;
-  border: 1px solid;
 }
 
 .component.isAlive {
-  background-color: black;
-  border-color: white;
+  background-color: #000;
 }
 
 .component.isDead {
-  background-color: white;
-  border-color: black;
+  background-color: #fff;
 }
