@@ -1,26 +1,7 @@
+<button (click)="gameService.generateRandomCells()">New generation</button>
+<button (click)="gameService.nextGeneration()">Next Generation</button>
+<button (click)="toggleInterval()">Auto</button>
+
 <app-board
-  [cells]="[
-    [
-      { state: 'alive', neightbours: 0 },
-      { state: 'alive', neightbours: 1 },
-      { state: 'alive', neightbours: 2 },
-      { state: 'alive', neightbours: 3 },
-      { state: 'dead', neightbours: 4 },
-      { state: 'alive', neightbours: 5 },
-      { state: 'alive', neightbours: 6 },
-      { state: 'alive', neightbours: 7 },
-      { state: 'alive', neightbours: 8 }
-    ],
-    [
-      { state: 'alive', neightbours: 0 },
-      { state: 'alive', neightbours: 1 },
-      { state: 'alive', neightbours: 2 },
-      { state: 'alive', neightbours: 3 },
-      { state: 'dead', neightbours: 4 },
-      { state: 'alive', neightbours: 5 },
-      { state: 'alive', neightbours: 6 },
-      { state: 'alive', neightbours: 7 },
-      { state: 'alive', neightbours: 8 }
-    ]
-  ]"
+  [cells]="gameService.cells"
 ></app-board>
