@@ -60,8 +60,8 @@ export class GameService {
         );
 
         const shouldStayAlive =
-          (cell.state === 'alive' && aliveNeighbours === 2) ||
-          aliveNeighbours === 3;
+          cell.state === 'alive' &&
+          (aliveNeighbours === 2 || aliveNeighbours === 3);
         const shouldBecomeAlive = aliveNeighbours === 3;
 
         const state = shouldStayAlive || shouldBecomeAlive ? 'alive' : 'dead';
