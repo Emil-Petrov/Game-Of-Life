@@ -47,7 +47,7 @@ export class AppComponent {
     }
   }
 
-  setSpawnMode(enable: boolean) {
-    this.gameService.spawnMode.set(enable);
+  toggleSpawnMode() {
+    this.gameService.spawnMode.update((previous) => !previous);
   }
 }

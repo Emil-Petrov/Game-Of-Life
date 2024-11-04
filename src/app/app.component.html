@@ -1,7 +1,15 @@
-<button (click)="gameService.generateRandomCells()">New generation</button>
-<button (click)="gameService.nextGeneration()">Next Generation</button>
-<button (click)="toggleInterval()">Auto</button>
+<div class="controls">
+  <button class="button" (click)="gameService.generateRandomCells()">
+    New generation
+  </button>
 
-<div (mousedown)="setSpawnMode(true)" (mouseup)="setSpawnMode(false)">
+  <button class="button" (click)="gameService.nextGeneration()">
+    Next Generation
+  </button>
+
+  <button class="button" (click)="toggleInterval()">Auto</button>
+</div>
+
+<div (click)="toggleSpawnMode()">
   <app-board [cells]="gameService.cells"></app-board>
 </div>

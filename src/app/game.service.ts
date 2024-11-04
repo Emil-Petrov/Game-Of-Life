@@ -5,8 +5,8 @@ import { Injectable, signal } from '@angular/core';
 })
 export class GameService {
   cells: GameOfLife.Cell[][] = [];
-  columns = 100;
-  rows = 50;
+  columnsCount = 100;
+  rowsCount = 50;
   chanceToSpawnAlive = 0.25;
 
   spawnMode = signal(false);
@@ -16,17 +16,16 @@ export class GameService {
   }
 
   public generateRandomCells() {
-    this.cells = [...new Array(this.rows).keys()].reduce<typeof this.cells>(
-      (items) => {
-        return [
-          ...items,
-          [...new Array(this.columns).keys()].map(() => ({
-            state: Math.random() <= this.chanceToSpawnAlive ? 'alive' : 'dead',
-          })),
-        ];
-      },
-      [],
-    );
+    this.cells = [...new Array(this.rowsCount).keys()].reduce<
+      typeof this.cells
+    >((items) => {
+      return [
+        ...items,
+        [...new Array(this.columnsCount).keys()].map(() => ({
+          state: Math.random() <= this.chanceToSpawnAlive ? 'alive' : 'dead',
+        })),
+      ];
+    }, []);
   }
 
   private getAliveNeighboursCount(rowIndex: number, columnIndex: number) {
@@ -71,7 +70,7 @@ export class GameService {
       });
     });
 
-    // Use new generation to replace old generation states.
+    // Use new generation to replace old generation states. Otherwise everything re-renders and CSS transitions don't work
     newGeneration.forEach((row, rowIndex) =>
       row.forEach((cell, cellIndex) => {
         this.cells[rowIndex][cellIndex].state = cell.state;
