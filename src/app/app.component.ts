@@ -46,4 +46,8 @@ export class AppComponent {
       window.clearInterval(this.intervalId);
     }
   }
+
+  setSpawnMode(enable: boolean) {
+    this.gameService.spawnMode.set(enable);
+  }
 }

@@ -2,4 +2,6 @@
 <button (click)="gameService.nextGeneration()">Next Generation</button>
 <button (click)="toggleInterval()">Auto</button>
 
-<app-board [cells]="gameService.cells"></app-board>
+<div (mousedown)="setSpawnMode(true)" (mouseup)="setSpawnMode(false)">
+  <app-board [cells]="gameService.cells"></app-board>
+</div>

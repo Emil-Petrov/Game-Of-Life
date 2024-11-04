@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { GameService } from '../game.service';
 
 @Component({
   imports: [CommonModule],
@@ -10,8 +17,14 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 })
 export class CellComponent {
   @Input() state: GameOfLife.Cell['state'] = 'dead';
+  @Output() stateChange = new EventEmitter<GameOfLife.Cell['state']>();
+
+  constructor(private gameService: GameService) {}
 
   toggle() {
-    this.state = this.state === 'alive' ? 'dead' : 'alive';
+    if (this.gameService.spawnMode()) {
+      this.state = this.state === 'alive' ? 'dead' : 'alive';
+      this.stateChange.emit(this.state);
+    }
   }
 }

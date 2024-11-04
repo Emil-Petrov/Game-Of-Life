@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +8,8 @@ export class GameService {
   columns = 100;
   rows = 50;
   chanceToSpawnAlive = 0.25;
+
+  spawnMode = signal(false);
 
   constructor() {
     this.generateRandomCells();
